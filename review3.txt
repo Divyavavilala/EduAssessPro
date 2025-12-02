@@ -1,0 +1,208 @@
+⭐ 1. USE CASE DIAGRAM — Steps in StarUML
+Step 1: Create a New Use Case Diagram
+
+Open StarUML → Model Explorer
+
+Right-click Model → Add Diagram → Use Case Diagram
+
+Step 2: Add Actors
+
+From the left Palette → select Actor
+
+Click on canvas
+
+Rename (e.g., Student, Admin)
+
+Step 3: Add Use Cases
+
+Choose Use Case from palette
+
+Place inside diagram
+
+Rename (e.g., Login, Register, Create Event)
+
+Step 4: Connect Actors to Use Cases
+
+Select Association (line) tool
+
+Click Actor → Click Use Case
+
+Step 5: Add System Boundary
+
+From palette → Rectangle
+
+Name it “System Boundary”
+
+Put use cases inside
+
+Step 6: Include / Extend (Optional)
+
+Include: Use Case → Include
+
+Extend: Use Case → Extend
+
+Step 7: Export Image
+File → Export Diagram → PNG / JPG
+
+⭐ 2. CLASS DIAGRAM — Steps in StarUML
+Step 1: Create Class Diagram
+
+Model Explorer → Right-click Model → Add Diagram → Class Diagram
+
+Step 2: Add Classes
+
+From palette choose Class
+
+Click to place
+
+Rename (Student, Event, Admin)
+
+Step 3: Add Attributes
+
+Double-click class
+
+Under Attributes, add:
+
+studentId : int
+name : String
+email : String
+
+Step 4: Add Methods
+
+Under Operations, add:
+
+registerEvent()
+login()
+
+Step 5: Add Relationships
+
+Use Palette tools:
+
+Association → normal connection
+
+Inheritance (Generalization) → for parent/child classes
+
+Aggregation → “has-a”
+
+Composition → strong ownership
+
+Example:
+
+Admin ---- manages ---- Event
+Student ---- registers ---- Event
+
+Step 6: Export Diagram
+File → Export Diagram → PNG/JPG
+
+⭐ 3. OBJECT DIAGRAM — Steps in StarUML
+
+An object diagram represents instances of classes.
+
+Step 1: Add Object Diagram
+
+Right-click Model → Add Diagram → Object Diagram
+
+Step 2: Add Objects
+
+From palette select Object
+Example instances:
+
+student1 : Student
+event1 : Event
+admin1 : Admin
+
+Step 3: Fill Attribute Values
+
+Double-click object → add slots:
+
+studentId = 101
+name = "Alice"
+email = "alice@gmail.com"
+
+Step 4: Connect Objects
+
+Use Link from palette to show associations between instances.
+
+Step 5: Export
+File → Export Diagram
+
+⭐ 4. COMPONENT DIAGRAM — Steps in StarUML
+Step 1: Add Component Diagram
+
+Model Explorer → Right-click → Add Diagram → Component Diagram
+
+Step 2: Add Components
+
+From palette:
+
+Component
+
+Node
+
+Interface
+
+Example components:
+
+Frontend
+Backend
+Database
+Auth Service
+
+Step 3: Add Interfaces
+
+Use Provided / Required Interface tools.
+
+Step 4: Connect Components
+
+Use Dependency or Assembly Connector.
+
+Example:
+
+Frontend --(uses)--> Backend
+Backend --(uses)--> Database
+
+Step 5: Export
+File → Export Diagram
+
+⭐ 5. SEQUENCE DIAGRAM — Steps in StarUML
+Step 1: Add Sequence Diagram
+
+Right-click Model → Add Diagram → Sequence Diagram
+
+Step 2: Add Lifelines
+
+From palette → Lifeline
+
+Example lifelines:
+
+User
+
+UI
+
+Controller
+
+Database
+
+Step 3: Add Messages
+
+From palette:
+
+Call Message → for function call
+
+Return Message → for response
+
+Example sequence:
+
+User → UI: Login()
+UI → Controller: validateUser()
+Controller → DB: queryUser()
+DB → Controller: result
+Controller → UI: success
+UI → User: dashboard shown
+
+Step 4: Add Activation Bars
+
+Automatically shown when message is added.
+
+Step 5: Export
+File → Export Diagram
