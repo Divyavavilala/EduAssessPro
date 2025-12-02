@@ -1,0 +1,190 @@
+🟦 METHOD 1 — CREATE DOCKER IMAGE USING docker commit
+
+(Creating image from a running container)
+
+✅ 1. Pull a base image
+docker pull ubuntu:latest
+
+✅ 2. Run a container interactively
+docker run -it -p 8080:80 --name mycontainer ubuntu:latest
+
+✅ 3. Inside the container → install packages / modify files
+apt update
+apt install -y git
+apt install -y nginx
+nano /usr/share/nginx/html/index.html
+
+✅ 4. Exit the container
+exit
+
+✅ 5. Commit container into a new image
+docker commit mycontainer ubuntu-custom:v1
+
+✅ 6. Tag the image with your Docker Hub username
+docker tag ubuntu-custom:v1 <your-username>/ubuntu-custom:v1
+
+
+Example:
+
+docker tag ubuntu-custom:v1 divyasree/ubuntu-custom:v1
+
+✅ 7. Login to Docker Hub
+docker login
+
+✅ 8. Push the image to Docker Hub
+docker push <your-username>/ubuntu-custom:v1
+
+
+Example:
+
+docker push divyasree/ubuntu-custom:v1
+
+🟩 METHOD 2 — CREATE DOCKER IMAGE USING A DOCKERFILE
+
+(Professional & repeatable way)
+
+📁 1. Create a project folder
+mkdir mydockerapp
+cd mydockerapp
+
+📝 2. Create index.html
+echo "<h1>Hello from Dockerfile!</h1>" > index.html
+
+📝 3. Create a Dockerfile
+nano Dockerfile
+
+
+Paste this content:
+
+FROM ubuntu:latest
+
+RUN apt update && apt install -y nginx git
+COPY index.html /usr/share/nginx/html/index.html
+
+CMD ["nginx", "-g", "daemon off;"]
+
+🛠️ 4. Build the image
+docker build -t <your-username>/mydockerapp:v1 .
+
+
+Example:
+
+docker build -t divyasree/mydockerapp:v1 .
+
+▶️ 5. Run the container
+docker run -d -p 8080:80 --name mydockerapp1 <your-username>/mydockerapp:v1
+
+⬆️ 6. Push to Docker Hub
+docker push <your-username>/mydockerapp:v1
+
+🟧 USEFUL DOCKER COMMANDS (EXTRA)
+List images
+docker images
+
+List containers
+docker ps
+docker ps -a
+
+Stop container
+docker stop <container-name>
+
+Remove container
+docker rm <container-name>
+
+Remove image
+docker rmi <image-name>
+
+
+GIT INTEGRATION:
+
+Inside your project folder:
+
+git init
+git add .
+git commit -m "Initial project commit"
+
+2️⃣ Save snapshot with message “Added event registration feature”
+git add .
+git commit -m "Added event registration feature"
+
+3️⃣ See current status of modified and staged files
+git status
+
+4️⃣ View commit history of your project
+git log --oneline --graph --decorate --all
+
+5️⃣ Clone a repository and see all branches
+
+Clone:
+
+git clone <repo-url>
+
+
+See branches:
+
+git branch -a
+
+6️⃣ Create new feature branch
+git checkout -b event-scheduler
+
+7️⃣ Apply a patch file received from teammate
+
+Assume file name is fix.patch:
+
+git apply fix.patch
+git add .
+git commit -m "Applied patch fixing bugs in event notification"
+
+8️⃣ Create a new branch for online feedback feature
+git checkout -b online-feedback
+
+
+Make changes, then commit:
+
+git add .
+git commit -m "Implemented online feedback module"
+
+
+Switch back to main:
+
+git checkout main
+
+9️⃣ Merge completed feedback branch into main
+git merge online-feedback
+
+🔟 Collaborate using fork & pull request workflow
+
+Your local command:
+
+git remote add upstream <original-repo-url>
+git fetch upstream
+git checkout main
+git merge upstream/main
+
+
+(Pull request is made on GitHub UI)
+
+1️⃣1️⃣ See differences between your local branch and main on GitHub
+git fetch origin
+git diff main origin/main
+
+
+OR compare any branch with main:
+
+git diff my-branch main
+
+1️⃣2️⃣ Pull teammate’s new branch named event-feedback and test locally
+git fetch origin
+git checkout -b event-feedback origin/event-feedback
+
+
+Run project → test locally.
+
+1️⃣3️⃣ See differences introduced by the last commit on your branch
+git log -1
+git show
+
+
+or:
+
+git show HEAD
